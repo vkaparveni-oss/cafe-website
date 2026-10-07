@@ -1,0 +1,990 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Velvet Bean Cafe</title>
+  <meta name="description" content="Velvet Bean Cafe serves artisan coffee, fresh pastries, and cozy brunch experiences." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#f8f2ea;
+      --card:#fffdf9;
+      --text:#1d1a17;
+      --muted:#5e544d;
+      --primary:#7d4b2a;
+      --primary-dark:#5d3417;
+      --secondary:#d6b08a;
+      --gold:#d9c39a;
+      --line:rgba(29,26,23,0.12);
+      --shadow:0 18px 45px rgba(40,30,25,0.10);
+    }
+
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body{
+      margin:0;
+      font-family:"Inter", sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      line-height:1.6;
+    }
+
+    h1,h2,h3,h4{
+      font-family:"Cormorant Garamond", serif;
+      margin:0 0 12px;
+      font-weight:600;
+      letter-spacing:0.02em;
+      line-height:1.05;
+    }
+
+    img { max-width:100%; display:block; }
+    a{ color:inherit; text-decoration:none; }
+    .container{
+      width:min(1180px, calc(100% - 32px));
+      margin:0 auto;
+    }
+
+    .topbar{
+      background:#1d1a17;
+      color:#f5efe8;
+      font-size:0.82rem;
+      letter-spacing:0.08em;
+      text-transform:uppercase;
+      padding:12px 0;
+    }
+
+    .topbar .container{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:18px;
+      flex-wrap:wrap;
+    }
+
+    .topbar .info{
+      display:flex;
+      gap:20px;
+      flex-wrap:wrap;
+      opacity:0.9;
+    }
+
+    .header{
+      position:sticky;
+      top:0;
+      z-index:10;
+      backdrop-filter: blur(12px);
+      background:rgba(248,242,234,0.88);
+      border-bottom:1px solid var(--line);
+    }
+
+    .nav{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      min-height:80px;
+      gap:20px;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      font-weight:700;
+      letter-spacing:0.06em;
+      text-transform:uppercase;
+      font-size:0.9rem;
+    }
+
+    .brand-mark{
+      width:42px;
+      height:42px;
+      display:grid;
+      place-items:center;
+      border-radius:50%;
+      background:linear-gradient(135deg, var(--secondary), var(--primary));
+      color:#fff;
+      font-size:1.3rem;
+      box-shadow:var(--shadow);
+    }
+
+    .nav-links{
+      display:flex;
+      align-items:center;
+      gap:28px;
+      font-size:0.93rem;
+      color:var(--muted);
+    }
+
+    .nav-links a:hover{ color:var(--primary); }
+
+    .nav-cta{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:14px 22px;
+      border-radius:999px;
+      background:var(--primary);
+      color:white;
+      font-weight:600;
+      transition:0.2s ease;
+    }
+
+    .nav-cta:hover{
+      background:var(--primary-dark);
+      transform:translateY(-1px);
+    }
+
+    .hero{
+      position:relative;
+      min-height:760px;
+      display:flex;
+      align-items:center;
+      background:
+        linear-gradient(90deg, rgba(20,15,12,0.62), rgba(20,15,12,0.25)),
+        url('https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+      color:#fff;
+    }
+
+    .hero .container{
+      display:grid;
+      grid-template-columns:1.2fr 0.8fr;
+      gap:30px;
+      align-items:end;
+      padding:60px 0;
+    }
+
+    .hero-copy{
+      max-width:620px;
+    }
+
+    .eyebrow{
+      display:inline-block;
+      background:rgba(255,255,255,0.12);
+      border:1px solid rgba(255,255,255,0.2);
+      color:#f6e3d2;
+      padding:9px 16px;
+      border-radius:999px;
+      letter-spacing:0.1em;
+      text-transform:uppercase;
+      font-size:0.72rem;
+      margin-bottom:18px;
+    }
+
+    .hero h1{
+      font-size:clamp(3.8rem, 6vw, 7rem);
+      margin-bottom:18px;
+      font-weight:600;
+    }
+
+    .hero p{
+      font-size:1.1rem;
+      max-width:560px;
+      color:rgba(255,255,255,0.8);
+    }
+
+    .hero-actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:15px;
+      margin-top:28px;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      border-radius:999px;
+      padding:16px 28px;
+      font-weight:600;
+      transition:0.2s ease;
+    }
+
+    .btn-primary{
+      background:var(--secondary);
+      color:#1d1a17;
+    }
+
+    .btn-primary:hover{
+      background:#d0a576;
+      transform:translateY(-1px);
+    }
+
+    .btn-secondary{
+      border:1px solid rgba(255,255,255,0.36);
+      color:#fff;
+      background:rgba(255,255,255,0.05);
+    }
+
+    .btn-secondary:hover{
+      background:rgba(255,255,255,0.12);
+    }
+
+    .hero-card{
+      background:rgba(255,255,255,0.09);
+      border:1px solid rgba(255,255,255,0.18);
+      backdrop-filter: blur(8px);
+      border-radius:28px;
+      padding:26px;
+      max-width:430px;
+      margin-left:auto;
+      box-shadow:var(--shadow);
+    }
+
+    .mini-title{
+      font-size:0.76rem;
+      color:#f5d8bc;
+      letter-spacing:0.12em;
+      text-transform:uppercase;
+      margin-bottom:14px;
+      display:block;
+    }
+
+    .price{
+      font-size:clamp(2.1rem, 4vw, 3rem);
+      color:#fff;
+      font-weight:700;
+      margin:18px 0;
+      font-family:"Cormorant Garamond", serif;
+    }
+
+    .hero-card ul{
+      list-style:none;
+      padding:0;
+      margin:18px 0 0;
+      display:grid;
+      gap:10px;
+      color:rgba(255,255,255,0.8);
+    }
+
+    .hero-card li{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      border-bottom:1px solid rgba(255,255,255,0.14);
+      padding-bottom:8px;
+    }
+
+    section{
+      padding:110px 0;
+    }
+
+    .section-head{
+      display:flex;
+      justify-content:space-between;
+      align-items:end;
+      gap:20px;
+      margin-bottom:42px;
+      flex-wrap:wrap;
+    }
+
+    .section-head p{
+      max-width:560px;
+      color:var(--muted);
+      margin:0;
+      font-size:1rem;
+    }
+
+    .section-tag{
+      color:var(--primary);
+      letter-spacing:0.12em;
+      text-transform:uppercase;
+      font-size:0.75rem;
+      font-weight:700;
+      margin-bottom:10px;
+      display:block;
+    }
+
+    .about{
+      background:#f3e9df;
+    }
+
+    .about-grid{
+      display:grid;
+      grid-template-columns:1.05fr 0.95fr;
+      gap:34px;
+      align-items:center;
+    }
+
+    .about-image{
+      position:relative;
+      border-radius:30px;
+      overflow:hidden;
+      box-shadow:var(--shadow);
+    }
+
+    .about-image::before{
+      content:"";
+      position:absolute;
+      inset:18px auto auto 18px;
+      width:120px;
+      height:120px;
+      border:1px solid rgba(255,255,255,0.7);
+      border-radius:50%;
+      z-index:1;
+    }
+
+    .about-card{
+      background:var(--card);
+      border-radius:28px;
+      padding:32px;
+      box-shadow:var(--shadow);
+      border:1px solid var(--line);
+    }
+
+    .about-card p{
+      color:var(--muted);
+      margin:0 0 16px;
+    }
+
+    .stats{
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0,1fr));
+      gap:16px;
+      margin-top:26px;
+    }
+
+    .stat{
+      background:#f7f2ea;
+      border:1px solid var(--line);
+      border-radius:18px;
+      padding:18px 16px;
+    }
+
+    .stat strong{
+      display:block;
+      font-size:2rem;
+      font-family:"Cormorant Garamond", serif;
+      margin-bottom:4px;
+    }
+
+    .menu{
+      background:linear-gradient(180deg, rgba(255,255,255,0.1), rgba(255,255,255,0.1));
+    }
+
+    .menu-grid{
+      display:grid;
+      grid-template-columns:repeat(2, minmax(0,1fr));
+      gap:22px;
+    }
+
+    .menu-item{
+      display:flex;
+      gap:18px;
+      align-items:flex-start;
+      background:var(--card);
+      border:1px solid var(--line);
+      border-radius:24px;
+      padding:20px 18px;
+      box-shadow:0 10px 20px rgba(24,20,18,0.03);
+    }
+
+    .menu-thumb{
+      width:120px;
+      height:120px;
+      border-radius:18px;
+      overflow:hidden;
+      flex-shrink:0;
+      background:#ddd;
+    }
+
+    .menu-body{
+      flex:1;
+      min-width:0;
+    }
+
+    .menu-head{
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+      align-items:center;
+      margin-bottom:8px;
+    }
+
+    .menu-head h3{
+      font-size:2rem;
+      margin:0;
+      font-weight:600;
+    }
+
+    .price-tag{
+      color:var(--primary);
+      font-weight:700;
+      white-space:nowrap;
+    }
+
+    .menu-body p{
+      margin:0;
+      color:var(--muted);
+    }
+
+    .special{
+      background:#f7efe6;
+    }
+
+    .special-grid{
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0,1fr));
+      gap:24px;
+    }
+
+    .special-card{
+      background:var(--card);
+      border-radius:28px;
+      overflow:hidden;
+      border:1px solid var(--line);
+      box-shadow:0 14px 32px rgba(34,24,18,0.05);
+    }
+
+    .special-card .content{
+      padding:24px 22px 26px;
+    }
+
+    .special-card .badge{
+      display:inline-flex;
+      background:#fff0dc;
+      color:var(--primary-dark);
+      border-radius:999px;
+      padding:6px 12px;
+      font-size:0.72rem;
+      font-weight:700;
+      letter-spacing:0.08em;
+      text-transform:uppercase;
+      margin-bottom:12px;
+    }
+
+    .special-card p{
+      color:var(--muted);
+      margin:0 0 12px;
+    }
+
+    .special-card .more{
+      font-weight:700;
+      color:var(--primary);
+    }
+
+    .gallery{
+      background:var(--bg);
+    }
+
+    .gallery-grid{
+      display:grid;
+      grid-template-columns:repeat(4, minmax(0,1fr));
+      gap:18px;
+    }
+
+    .gallery-grid img{
+      height:320px;
+      width:100%;
+      object-fit:cover;
+      border-radius:24px;
+      filter:saturate(0.95);
+      box-shadow:0 12px 24px rgba(32,25,22,0.08);
+    }
+
+    .testimonial{
+      background:#1e1917;
+      color:#f8efe7;
+    }
+
+    .testimonial-grid{
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0,1fr));
+      gap:24px;
+    }
+
+    .quote{
+      background:rgba(255,255,255,0.03);
+      border:1px solid rgba(255,255,255,0.08);
+      border-radius:26px;
+      padding:26px;
+    }
+
+    .quote p{
+      margin:0 0 18px;
+      color:rgba(255,255,255,0.8);
+    }
+
+    .person{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      margin-top:18px;
+    }
+
+    .avatar{
+      width:44px;
+      height:44px;
+      background:linear-gradient(135deg, var(--gold), var(--secondary));
+      border-radius:50%;
+      display:grid;
+      place-items:center;
+      color:#2a201b;
+      font-weight:700;
+    }
+
+    .visit{
+      background:#f3e8db;
+    }
+
+    .visit-grid{
+      display:grid;
+      grid-template-columns:1.1fr 0.9fr;
+      gap:26px;
+      align-items:stretch;
+    }
+
+    .visit-info{
+      background:var(--card);
+      border:1px solid var(--line);
+      border-radius:28px;
+      padding:30px;
+      box-shadow:0 12px 24px rgba(35,24,17,0.05);
+    }
+
+    .info-list{
+      display:grid;
+      gap:16px;
+      margin-top:22px;
+    }
+
+    .info-row{
+      display:flex;
+      gap:12px;
+      align-items:flex-start;
+      color:var(--muted);
+    }
+
+    .icon{
+      width:34px;
+      height:34px;
+      border-radius:50%;
+      background:#f6ead9;
+      display:grid;
+      place-items:center;
+      color:var(--primary);
+      font-weight:700;
+      flex-shrink:0;
+    }
+
+    .visit-map{
+      min-height:100%;
+      border-radius:28px;
+      overflow:hidden;
+      border:1px solid var(--line);
+      background:linear-gradient(135deg, #d9c3a1, #f5e3cb);
+      box-shadow:var(--shadow);
+      position:relative;
+    }
+
+    .map-box{
+      position:absolute;
+      inset:0;
+      background:
+        linear-gradient(rgba(0,0,0,0.05), rgba(0,0,0,0.08)),
+        url('https://images.unsplash.com/photo-1521017432531-fbd92d768814?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;
+    }
+
+    .map-label{
+      position:absolute;
+      left:50%;
+      top:50%;
+      transform:translate(-50%,-50%);
+      background:rgba(29,26,23,0.82);
+      color:#fff;
+      padding:14px 18px;
+      border-radius:16px;
+      min-width:210px;
+      text-align:center;
+      box-shadow:var(--shadow);
+    }
+
+    .footer{
+      background:#181412;
+      color:#f1eae2;
+      padding:30px 0;
+      text-align:center;
+      font-size:0.95rem;
+    }
+
+    @media (max-width: 980px){
+      .hero .container,
+      .about-grid,
+      .visit-grid{
+        grid-template-columns:1fr;
+      }
+
+      .hero-card{
+        margin-left:0;
+      }
+
+      .menu-grid,
+      .special-grid,
+      .testimonial-grid{
+        grid-template-columns:1fr;
+      }
+
+      .gallery-grid{
+        grid-template-columns:repeat(2, minmax(0,1fr));
+      }
+    }
+
+    @media (max-width: 760px){
+      .nav{
+        flex-wrap:wrap;
+        justify-content:center;
+        padding:16px 0;
+      }
+
+      .nav-links{
+        width:100%;
+        justify-content:center;
+        flex-wrap:wrap;
+      }
+
+      .hero{
+        min-height:620px;
+      }
+
+      .hero h1{
+        font-size:3.4rem;
+      }
+
+      .stats{
+        grid-template-columns:1fr;
+      }
+
+      .gallery-grid{
+        grid-template-columns:1fr;
+      }
+
+      .menu-item{
+        flex-direction:column;
+      }
+
+      .menu-thumb{
+        width:100%;
+        height:220px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="topbar">
+    <div class="container">
+      <div>Open Daily • 7:30 AM – 9:00 PM</div>
+      <div class="info">
+        <span>12 Willow Lane</span>
+        <span>+1 (415) 555-0148</span>
+      </div>
+    </div>
+  </div>
+
+  <header class="header">
+    <div class="container nav">
+      <a href="#top" class="brand" aria-label="Velvet Bean Cafe home">
+        <span class="brand-mark">V</span>
+        <span>Velvet Bean</span>
+      </a>
+
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="#about">About</a>
+        <a href="#menu">Menu</a>
+        <a href="#specials">Specials</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#visit">Visit</a>
+      </nav>
+
+      <a class="nav-cta" href="#visit">Reserve a Table</a>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container">
+        <div class="hero-copy">
+          <span class="eyebrow">Freshly brewed every day</span>
+          <h1>Slow coffee, warm meals, bright mornings.</h1>
+          <p>
+            Enjoy handcrafted espresso, seasonal bakes, and a welcoming neighborhood vibe designed for every kind of day.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#menu">Explore Menu</a>
+            <a class="btn btn-secondary" href="#about">Our Story</a>
+          </div>
+        </div>
+
+        <div class="hero-card">
+          <span class="mini-title">Today’s favorite</span>
+          <h2>Honey Cinnamon Latte</h2>
+          <div class="price">$6.50</div>
+
+          <ul>
+            <li><span>Espresso</span><strong>Single origin</strong></li>
+            <li><span>Milk</span><strong>Oat or dairy</strong></li>
+            <li><span>Finish</span><strong>Honey drizzle</strong></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="about" id="about">
+      <div class="container about-grid">
+        <div class="about-image">
+          <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=1200&q=80" alt="Cafe interior with warm lights and seating" />
+        </div>
+
+        <div class="about-card">
+          <span class="section-tag">About us</span>
+          <h2>A neighborhood cafe built for connection.</h2>
+          <p>
+            Velvet Bean began with a simple idea: create a cozy corner where great coffee and good company feel effortless.
+            We brew small-batch beans, bake fresh pastries daily, and serve meals that feel comforting and elevated.
+          </p>
+          <p>
+            Every detail is designed to slow you down — from the warm wood textures to the rich aroma of our espresso bar.
+          </p>
+
+          <div class="stats">
+            <div class="stat">
+              <strong>8+</strong>
+              <span>Years serving</span>
+            </div>
+            <div class="stat">
+              <strong>12k</strong>
+              <span>Cups brewed</span>
+            </div>
+            <div class="stat">
+              <strong>4.9</strong>
+              <span>Average rating</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="menu" id="menu">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="section-tag">Menu</span>
+            <h2>Pour-over favorites & hearty bites.</h2>
+          </div>
+          <p>From velvety lattes to fresh brunch plates, each item is made with seasonal ingredients and a lot of care.</p>
+        </div>
+
+        <div class="menu-grid">
+          <article class="menu-item">
+            <div class="menu-thumb">
+              <img src="https://images.unsplash.com/photo-1497636577773-f1231844b336?auto=format&fit=crop&w=800&q=80" alt="Latte art coffee" />
+            </div>
+            <div class="menu-body">
+              <div class="menu-head">
+                <h3>Vanilla Latte</h3>
+                <span class="price-tag">$5.80</span>
+              </div>
+              <p>House espresso, silky milk, vanilla bean, and a delicate finish of cinnamon sugar.</p>
+            </div>
+          </article>
+
+          <article class="menu-item">
+            <div class="menu-thumb">
+              <img src="https://images.unsplash.com/photo-1504753793650-d4a2b783c15e?auto=format&fit=crop&w=800&q=80" alt="Pour-over coffee" />
+            </div>
+            <div class="menu-body">
+              <div class="menu-head">
+                <h3>Pour Over</h3>
+                <span class="price-tag">$4.90</span>
+              </div>
+              <p>Single-origin beans brewed to order with bright citrus notes and a clean finish.</p>
+            </div>
+          </article>
+
+          <article class="menu-item">
+            <div class="menu-thumb">
+              <img src="https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=800&q=80" alt="Avocado toast" />
+            </div>
+            <div class="menu-body">
+              <div class="menu-head">
+                <h3>Avocado Toast</h3>
+                <span class="price-tag">$9.20</span>
+              </div>
+              <p>Sourdough, smashed avocado, chili oil, lemon, and microgreens on toasted artisan bread.</p>
+            </div>
+          </article>
+
+          <article class="menu-item">
+            <div class="menu-thumb">
+              <img src="https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=800&q=80" alt="Breakfast bowl" />
+            </div>
+            <div class="menu-body">
+              <div class="menu-head">
+                <h3>Sunrise Bowl</h3>
+                <span class="price-tag">$11.50</span>
+              </div>
+              <p>Quinoa, roasted vegetables, eggs, feta, and herb dressing with a warm spice finish.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="special" id="specials">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="section-tag">Specials</span>
+            <h2>Seasonal picks to keep things delicious.</h2>
+          </div>
+        </div>
+
+        <div class="special-grid">
+          <article class="special-card">
+            <img src="https://images.unsplash.com/photo-1461016951828-c09537329b3a?auto=format&fit=crop&w=1200&q=80" alt="Coffee and croissant" />
+            <div class="content">
+              <span class="badge">Breakfast</span>
+              <h3>Morning Duo</h3>
+              <p>Any signature coffee paired with a buttery croissant or seasonal muffin.</p>
+              <a href="#visit" class="more">Order now →</a>
+            </div>
+          </article>
+
+          <article class="special-card">
+            <img src="https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&w=1200&q=80" alt="Fresh pastry on a plate" />
+            <div class="content">
+              <span class="badge">Bakery</span>
+              <h3>Brown Butter Tart</h3>
+              <p>Rich, caramelized pastry with toasted pecans and a light vanilla cream filling.</p>
+              <a href="#visit" class="more">Try a slice →</a>
+            </div>
+          </article>
+
+          <article class="special-card">
+            <img src="https://images.unsplash.com/photo-1521305916504-4a1121188589?auto=format&fit=crop&w=1200&q=80" alt="Iced coffee drink" />
+            <div class="content">
+              <span class="badge">Cold brew</span>
+              <h3>Maple Cold Brew</h3>
+              <p>Slow-steeped coffee with maple syrup, oat milk, and a refreshing citrus twist.</p>
+              <a href="#visit" class="more">Enjoy fresh →</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="gallery" id="gallery">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="section-tag">Gallery</span>
+            <h2>Moments from the cafe.</h2>
+          </div>
+        </div>
+
+        <div class="gallery-grid">
+          <img src="https://images.unsplash.com/photo-1442512595331-e89e73853f31?auto=format&fit=crop&w=800&q=80" alt="Cafe coffee bar" />
+          <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=800&q=80" alt="Cup of coffee on table" />
+          <img src="https://images.unsplash.com/photo-1521012175663-8cdc8cb50f33?auto=format&fit=crop&w=800&q=80" alt="Coffee shop interior" />
+          <img src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=800&q=80" alt="Fresh pastries" />
+        </div>
+      </div>
+    </section>
+
+    <section class="testimonial">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="section-tag" style="color:#f3d2aa;">Reviews</span>
+            <h2 style="color:#fff;">People come for the coffee and stay for the mood.</h2>
+          </div>
+        </div>
+
+        <div class="testimonial-grid">
+          <article class="quote">
+            <p>“The espresso is incredible, and the space feels so calming. It’s become my favorite place to work mornings.”</p>
+            <div class="person">
+              <div class="avatar">A</div>
+              <div>
+                <strong>Alicia R.</strong><br>
+                <span style="color:rgba(255,255,255,0.7);">Frequent guest</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="quote">
+            <p>“Every detail is thoughtful — the pastries are fresh, the service is warm, and the coffee never disappoints.”</p>
+            <div class="person">
+              <div class="avatar">M</div>
+              <div>
+                <strong>Marcus P.</strong><br>
+                <span style="color:rgba(255,255,255,0.7);">Brunch lover</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="quote">
+            <p>“The ambience is perfect for catching up with friends. It feels like a little escape from the city.”</p>
+            <div class="person">
+              <div class="avatar">N</div>
+              <div>
+                <strong>Nina S.</strong><br>
+                <span style="color:rgba(255,255,255,0.7);">Weekend regular</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="visit" id="visit">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="section-tag">Visit</span>
+            <h2>Find your favorite corner.</h2>
+          </div>
+        </div>
+
+        <div class="visit-grid">
+          <div class="visit-info">
+            <h3>Come by and say hello</h3>
+            <div class="info-list">
+              <div class="info-row">
+                <span class="icon">📍</span>
+                <div><strong>Address</strong><br>12 Willow Lane, Downtown District, San Francisco, CA</div>
+              </div>
+              <div class="info-row">
+                <span class="icon">☎</span>
+                <div><strong>Call</strong><br>+1 (415) 555-0148</div>
+              </div>
+              <div class="info-row">
+                <span class="icon">🕒</span>
+                <div><strong>Hours</strong><br>Mon–Sun: 7:30 AM – 9:00 PM</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="visit-map">
+            <div class="map-box"></div>
+            <div class="map-label">
+              <strong>Velvet Bean</strong><br>
+              Coffee • Brunch • Bakery
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      © 2026 Velvet Bean Cafe • Crafted with care and caffeine.
+    </div>
+  </footer>
+
+</body>
+</html>
